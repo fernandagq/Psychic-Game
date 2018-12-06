@@ -20,27 +20,63 @@
         <h2 id="Guesses"></h2>
         </div>
         <script>
-            var letterChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+            var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+            
             var userWins = 0;
             var userLosses = 0;
-            var guessesLeft = 0;
-            var currentGuesses = 0;
+            var guessesLeft = 10;
+            var currentGuesses = [];
 
+            // for (var i = 0;  currentGuesses.length < 10; i++) {
             document.onkeyup = function(event) {
                 
                 var userGuess = event.key;
+                console.log(userGuess);
                 
-                var correctLetter = letterChoices[Math.floor(Math.random() * 26)];
+                var correctLetter = computerChoices[Math.floor(Math.random() * 1)];
 
-                if (userGuess == "a" && correctLetter == "a") {
-                    console.log("Win!");
-                    userWins++;
-                } else if (userGuess != "a" && correctLetter == "a") {
-                    console.log("Loss");
-                    userLosses++;
+               if (userGuess == correctLetter) {
+                console.log("User wins");
+                userWins++;
+                
+            }
+                else if (userGuess != correctLetter) {
+                console.log("User loses");
+                userLosses++;
+                guessesLeft--;
+                currentGuesses.push(userGuess);
+
                 }
 
-            }
+                if(userWins === 10) {
+                    alert("You Won!")
+                    location.reload();
+                }  else if (userLosses === 10) {
+                    alert("Game Over")
+                    location.reload();
+                }
+
+                
+                
+                var userWinsDiv = document.getElementById("Wins");
+                userWinsDiv.textContent = userWins;
+                
+                var userLossesDiv = 
+                document.getElementById("Losses");
+                userLossesDiv.textContent = userLosses;
+
+                var guessesLeftDiv = 
+                document.getElementById("Guesses-Left"); guessesLeftDiv.textContent = guessesLeft;
+
+                var currentGuessesDiv =
+                document.getElementById("Guesses");
+                currentGuessesDiv.textContent = currentGuesses;
+                }
+            // 
+            // for (var j = 0; j < currentGuesses.length; j++) {
+            //     alert("Game Over")
+            // }
+            
 
 
         </script>
