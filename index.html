@@ -20,12 +20,27 @@
         <h2 id="Guesses"></h2>
         </div>
         <script>
-            var letters = [a, b, c, d, e, f, g, h, i, j, k, l,
-            m, n, o, p, q, r, s, t, u, v, w, x, y, z]
+            var letterChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
             var userWins = 0;
             var userLosses = 0;
             var guessesLeft = 0;
             var currentGuesses = 0;
+
+            document.onkeyup = function(event) {
+                
+                var userGuess = event.key;
+                
+                var correctLetter = letterChoices[Math.floor(Math.random() * 26)];
+
+                if (userGuess == "a" && correctLetter == "a") {
+                    console.log("Win!");
+                    userWins++;
+                } else if (userGuess != "a" && correctLetter == "a") {
+                    console.log("Loss");
+                    userLosses++;
+                }
+
+            }
 
 
         </script>
